@@ -1,0 +1,24 @@
+.root {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.favorite {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.favoriteIcon {
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.favoritedIcon {
+  object-fit: contain;
+}

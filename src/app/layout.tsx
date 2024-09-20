@@ -12,6 +12,11 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+const pretendard = localFont({
+  src: "./fonts/PretendardVariable.ttf",
+  variable: "--font-pretendard",
+  weight: "100 900",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,11 +30,13 @@ function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${pretendard.variable}`}
+      >
         {children}
       </body>
     </html>
   );
 }
 
-export default RootLayout
+export default RootLayout;

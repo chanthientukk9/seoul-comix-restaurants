@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model StoreCategory {
+  id          Int          @id @default(autoincrement())
+  name        String       @unique
+  description String
+  restaurants Restaurant[]
+
+  @@map("store_categories")
+}
+
+model Restaurant {
+  id            String        @id @default(uuid())
+  rating        Float
+  rating_count  Int
+  category_name String
+  category      StoreCategory @relation(fields: [category_name], references: [name])
+  city          String
+  desc          String
+  name          String
+  price_range   String
+  featured      Featured?
+  is_favorite    Boolean
+  images        Image[]
+
+  @@map("restaurants")
+}
+
+model Image {
+  id           Int        @id @default(autoincrement())
+  url          String
+  restaurant_id String
+  restaurant   Restaurant @relation(fields: [restaurant_id], references: [id])
+
+  @@map("images")
+}
+
+model Featured {
+  id           Int        @id @default(autoincrement())
+  text         String
+  icon         String
+  restaurant_id String     @unique
+  restaurant   Restaurant @relation(fields: [restaurant_id], references: [id])
+
+  @@map("featured")
+}
