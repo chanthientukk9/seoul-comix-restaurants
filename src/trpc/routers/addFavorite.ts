@@ -20,10 +20,33 @@ export const addFavoriteRouter = createTRPCRouter({
         data: {
           is_favorite: !restaurant.restaurant?.is_favorite,
         },
-        include: {
-          category: true,
-          images: true,
-          featured: true,
+        select: {
+          id: true,
+          name: true,
+          is_favorite: true,
+          desc: true,
+          price_range: true,
+          rating: true,
+          rating_count: true,
+          city: true,
+          images: {
+            select: {
+              id: true,
+              url: true,
+            },
+          },
+          category: {
+            select: {
+              name: true,
+              description: true,
+            },
+          },
+          featured: {
+            select: {
+              icon: true,
+              text: true,
+            },
+          },
         },
       });
 

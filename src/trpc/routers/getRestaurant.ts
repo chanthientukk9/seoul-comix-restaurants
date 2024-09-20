@@ -13,10 +13,33 @@ export const getRestaurantRouter = createTRPCRouter({
       const { restaurantId } = input;
       const restaurant = await prisma.restaurant.findUnique({
         where: { id: restaurantId },
-        include: {
-          category: true,
-          images: true,
-          featured: true,
+        select: {
+          id: true,
+          name: true,
+          is_favorite: true,
+          desc: true,
+          price_range: true,
+          rating: true,
+          rating_count: true,
+          city: true,
+          images: {
+            select: {
+              id: true,
+              url: true,
+            },
+          },
+          category: {
+            select: {
+              name: true,
+              description: true,
+            },
+          },
+          featured: {
+            select: {
+              icon: true,
+              text: true,
+            },
+          },
         },
       });
 
@@ -27,5 +50,5 @@ export const getRestaurantRouter = createTRPCRouter({
 });
 
 const createCaller = createCallerFactory(getRestaurantRouter);
- 
+
 export const getRestaurantCaller = createCaller({});

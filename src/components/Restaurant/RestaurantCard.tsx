@@ -3,19 +3,15 @@ import css from "./RestaurantCard.module.css";
 import Image from "next/image";
 import stars02Icon from "./assets/star-02.png";
 import starIcon from "./assets/star.png";
-import ImageCarousel, { TImage } from "../ImageCarousel/ImageCarousel";
+import ImageCarousel from "../ImageCarousel/ImageCarousel";
 import FavoriteButton from "./FavoriteButton";
 
 type TRestaurantCardProps = {
-  restaurant: RouterOutput["getRestaurant"]["restaurant"];
+  restaurant: RouterOutput["getRestaurants"]["restaurants"][number];
 };
 
 export default function RestaurantCard({ restaurant }: TRestaurantCardProps) {
   const { id, images, featured, name, rating, rating_count } = restaurant || {};
-  const convertedImages = images?.map((image) => ({
-    id: image.id,
-    url: image.url,
-  })) as TImage[] | undefined;
 
   return (
     <div className={css.root}>
@@ -26,7 +22,7 @@ export default function RestaurantCard({ restaurant }: TRestaurantCardProps) {
           restaurantId={id}
         />
       )}
-      <ImageCarousel className={css.imageWrapper} images={convertedImages} />
+      <ImageCarousel className={css.imageWrapper} images={images} />
       {featured && (
         <div className={css.featuredTag}>
           {featured.icon === "stars-02" && (

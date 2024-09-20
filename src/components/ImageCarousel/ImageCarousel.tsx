@@ -4,7 +4,7 @@ import css from "./ImageCarousel.module.css";
 import { useState } from "react";
 import Image from "next/image";
 
-export type TImage = { id: string; url: string };
+type TImage = { id: number | string; url: string };
 
 type TImageCarouselProps = {
   images?: TImage[];
