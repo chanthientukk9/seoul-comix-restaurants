@@ -6,6 +6,7 @@ import heartOutlineIcon from "./assets/heart-outline.png";
 import heartIcon from "./assets/heart.png";
 import css from "./FavoriteButton.module.css";
 import { useState } from "react";
+import { unstable_noStore as noStore } from 'next/cache';
 
 type TFavoriteButtonProps = {
   className?: string;
@@ -18,6 +19,7 @@ function FavoriteButtonComp({
   isFavorite,
   restaurantId,
 }: TFavoriteButtonProps) {
+  noStore();
   const [localLiked, setLocalLiked] = useState(isFavorite);
   const addFavorite = utilTrpc.addFavorite.useMutation({
     async onSuccess() {
