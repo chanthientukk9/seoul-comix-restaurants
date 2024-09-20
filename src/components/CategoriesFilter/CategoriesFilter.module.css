@@ -37,4 +37,10 @@
   line-height: 20px;
   color: #667085;
   zoom: 1;
+  cursor: pointer;
+}
+
+.selectedCategory {
+  border-radius: 6px;
+  background: #eaeaea;
 }

@@ -4,8 +4,12 @@ import RestaurantList from "@/components/Restaurant/RestaurantList";
 import styles from "./page.module.css";
 import CategoriesFilter from "@/components/CategoriesFilter/CategoriesFilter";
 
-export default async function Home() {
-  void trpc.getRestaurants.prefetch();
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { category: string; keywords: string; };
+}) {
+  void trpc.getRestaurants.prefetch({});
   void trpc.getCategories.prefetch();
 
   return (
@@ -14,8 +18,8 @@ export default async function Home() {
         <Topbar />
       </header>
       <main className={styles.main}>
-        <CategoriesFilter />
-        <RestaurantList />
+        <CategoriesFilter value={searchParams.category || "all"}/>
+        <RestaurantList category={searchParams.category} keywords={searchParams.keywords}/>
       </main>
     </div>
   );

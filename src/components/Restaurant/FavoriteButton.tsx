@@ -1,12 +1,12 @@
 "use client";
-import { trpc as utilTrpc } from "@/utils/trpc";
+import { trpc, TRPCProvider } from "@/trpc/client";
 import classNames from "classnames";
 import Image from "next/image";
 import heartOutlineIcon from "./assets/heart-outline.png";
 import heartIcon from "./assets/heart.png";
 import css from "./FavoriteButton.module.css";
 import { useState } from "react";
-import { unstable_noStore as noStore } from 'next/cache';
+import { unstable_noStore as noStore } from "next/cache";
 
 type TFavoriteButtonProps = {
   className?: string;
@@ -21,7 +21,7 @@ function FavoriteButtonComp({
 }: TFavoriteButtonProps) {
   noStore();
   const [localLiked, setLocalLiked] = useState(isFavorite);
-  const addFavorite = utilTrpc.addFavorite.useMutation({
+  const addFavorite = trpc.addFavorite.useMutation({
     async onSuccess() {
       setLocalLiked(!localLiked);
     },
@@ -56,9 +56,10 @@ function FavoriteButtonComp({
   );
 }
 
-const WrappedComp = utilTrpc.withTRPC(FavoriteButtonComp);
-
 export default function FavoriteButton(props: TFavoriteButtonProps) {
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
-  return <WrappedComp {...props as any} />;
+  return (
+    <TRPCProvider>
+      <FavoriteButtonComp {...props} />
+    </TRPCProvider>
+  );
 }

@@ -95,16 +95,10 @@ project
 |   |   |_____________
 |   |
 │   └───trpc // tRPC configuration and init instance, helpers
-│   |   │   routers // Create tRPC routers for requests
-│   |   │   init.ts // Init tRPC instance
-│   |   │   ...
-|   |   |_____________
-|   |
-│   └───utils // Utilities and helpers for UI
-│   |   │   trpc.ts // helper for FE
-│   |   │
-│   |   │   ...
-|   |   |_____________
+│       │   routers // Create tRPC routers for requests
+│       │   init.ts // Init tRPC instance
+│       │   ...
+|       |_____________
 │
 └───prisma
     │   schema.prisma // Define connection configuration for db and define
@@ -119,4 +113,6 @@ project
 - Like button is render client side.
 - You can click on heart icon to like (Full red heart) or unlike (Outline of white heart), when you click on heart, please wait some seconds then it will show the result.
 - There are indicators on each Restaurant card image, each indicator is a controller for an image of that restaurant. Click on it to change image.
+- You can select a category to filter by category
+- You can enter restaurant name to find restaurant.
 - It is an responsive website
