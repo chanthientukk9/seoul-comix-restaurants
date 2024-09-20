@@ -57,5 +57,6 @@ function FavoriteButtonComp({
 const WrappedComp = utilTrpc.withTRPC(FavoriteButtonComp);
 
 export default function FavoriteButton(props: TFavoriteButtonProps) {
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   return <WrappedComp {...props as any} />;
 }
