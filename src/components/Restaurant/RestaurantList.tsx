@@ -1,4 +1,3 @@
-"use server";
 import { trpc } from "@/trpc/server";
 import RestaurantCard from "./RestaurantCard";
 import css from "./RestaurantList.module.css";
