@@ -8,6 +8,12 @@
 
 .searchWrapper {
   position: relative;
+  width: 100%;
+
+  @media screen and (min-width: 1120px) {
+    width: 800px;
+    margin: auto;
+  }
 }
 
 .searchInput {
@@ -24,8 +30,7 @@
   color: #344054;
 
   @media screen and (min-width: 1120px) {
-    width: 800px;
-    margin: auto;
+    width: 100%;
   }
 }
 

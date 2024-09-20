@@ -7,13 +7,15 @@
 
   @media screen and (min-width: 1200px) {
     padding: 0;
+    max-width: 1104px;
+    margin: auto;
   }
 }
 
 .fitler {
   display: flex;
   gap: 5px;
-  width: 500px;
+  width: 100%;
   height: 36px;
   white-space: nowrap;
   position: relative;

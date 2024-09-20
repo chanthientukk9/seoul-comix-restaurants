@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Setup and How to use
 
-## Getting Started
+This is a guide to use seoul-comix-restaurants project. It is a Nextjs project which using Prisma as ORM and tRPC for communication between backend and frontend.
 
-First, run the development server:
+## Setup
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### 0 - Prerequisites
+
+- You need to have nodejs 18.20.1 or newer.
+- You need to have an IDE or code editor like VSCode.
+- You need to have a postgresql database to help this project connect to.
+
+### 1 - Setup .env file before install dependencies
+
+- You need to create .env file in root directory then fill this file to ensure project can connect to database:
+
+```
+POSTGRES_URL=""
+POSTGRES_PRISMA_URL=""
+POSTGRES_URL_NO_SSL=""
+POSTGRES_URL_NON_POOLING=""
+POSTGRES_USER=""
+POSTGRES_HOST=""
+POSTGRES_PASSWORD=""
+POSTGRES_DATABASE=""
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2 - Install dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+First you need to pull this project into your local machine, then access to root directory of project and run:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+yarn
+```
 
-## Learn More
+It will automatically install all dependencies and setup connection with database.
 
-To learn more about Next.js, take a look at the following resources:
+### 3 - Migrate database
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+After install dependencies, you can run this command to migrate database:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+yarn migrate-dev
+```
 
-## Deploy on Vercel
+To have seed data to test you can run:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+yarn db-seed
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To clear db you can run:
+
+```
+yarn db-seed
+```
+
+### 4 - Start the project
+
+After install packages and migrate data, you can now start the project:
+
+```
+yarn dev
+```
+
+then access `localhost:3000` to see the page.
+
+### 5 - Project structure
+
+```
+project
+│   README.md // How to install and use this project
+│   tsconfig.json // For configuration of typescript
+|   next.config.mjs // For nextjs configuration
+│   package.json // For working packages
+|   .env    // Remember to create it in your local machine.
+|
+└───src
+│   └───app // For defined routing for pages and api
+│   |   │   api // Directory for api routing
+│   |   │   fonts // For static fonts
+│   |   │   ...other route
+|   |   |_____________
+│   │
+│   └───components // For smaller ui parts, re-use components
+│   |   │   CategoriesFilter
+│   |   │   Restaurant
+│   |   │   ...
+|   |   |_____________
+|   |
+│   └───prisma // Prisma code
+│   |   │   prisma.ts // Create an singleton prisma instance for use in project
+│   |   │   env.js // Check required env when start and run project
+│   |   │   ...
+|   |   |_____________
+|   |
+│   └───trpc // tRPC configuration and init instance, helpers
+│   |   │   routers // Create tRPC routers for requests
+│   |   │   init.ts // Init tRPC instance
+│   |   │   ...
+|   |   |_____________
+|   |
+│   └───utils // Utilities and helpers for UI
+│   |   │   trpc.ts // helper for FE
+│   |   │
+│   |   │   ...
+|   |   |_____________
+│
+└───prisma
+    │   schema.prisma // Define connection configuration for db and define
+    |                 // database models
+    │   seed.ts       // For add seed data to empty database
+```
+
+### 5 - Notes
+
+- Restaurants list is render in server side
+- Categories list is render in server side
+- Like button is render client side.
+- You can click on heart icon to like (Full red heart) or unlike (Outline of white heart), when you click on heart, please wait some seconds then it will show the result.
+- There are indicators on each Restaurant card image, each indicator is a controller for an image of that restaurant. Click on it to change image.
+- It is an responsive website
