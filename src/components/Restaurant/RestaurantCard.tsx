@@ -1,4 +1,4 @@
-import { RouterOutput } from "@/utils/trpc";
+import { RouterOutput } from "@/trpc/server";
 import css from "./RestaurantCard.module.css";
 import Image from "next/image";
 import stars02Icon from "./assets/star-02.png";
