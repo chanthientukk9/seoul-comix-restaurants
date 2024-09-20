@@ -10,6 +10,9 @@ export const getRestaurantsRouter = createTRPCRouter({
           images: true,
           featured: true,
         },
+        orderBy: {
+          rating: 'desc',
+        },
       });
 
       return {

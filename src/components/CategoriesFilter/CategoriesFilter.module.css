@@ -1,0 +1,38 @@
+.root {
+  padding: 0 24px;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 50px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    padding: 0;
+  }
+}
+
+.fitler {
+  display: flex;
+  gap: 5px;
+  width: 500px;
+  height: 36px;
+  white-space: nowrap;
+  position: relative;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.fitler::-webkit-scrollbar {
+  display: none;
+}
+
+.category {
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #667085;
+  zoom: 1;
+}
